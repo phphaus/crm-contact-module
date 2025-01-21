@@ -13,6 +13,9 @@
 - [x] Set up entity mappings
 - [x] Implement repository pattern
 - [x] Add multi-tenant support
+- [x] Configure PostgreSQL optimizations
+- [ ] Add PostgreSQL-specific indexes
+- [ ] Implement partition strategy for large tenants
 
 ## Contact Management
 - [x] Create Contact entity

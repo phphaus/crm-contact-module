@@ -104,3 +104,22 @@
 - Configurable limits and rules
 - Easy local development
 - Clear configuration documentation
+
+## 8. PostgreSQL as Primary Database
+**Date:** 2024-03-19
+
+**Decision:** Use PostgreSQL as the primary database for production environments
+
+**Context:**
+- Need robust multi-tenant data isolation
+- Complex querying requirements for contacts
+- JSON storage for audit logs
+- Array types for phone/email collections
+- Performance considerations for large datasets
+
+**Consequences:**
+- Better performance for multi-tenant queries
+- More efficient JSON operations
+- Native array type support
+- More complex deployment requirements
+- SQLite remains for testing only

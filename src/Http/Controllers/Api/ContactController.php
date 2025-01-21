@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\Response;
+use Example\CrmExample\Http\Requests\ListContactsRequest;
 
 #[OA\Info(version: "1.0.0", title: "CRM Example API")]
 class ContactController extends Controller
@@ -21,30 +22,64 @@ class ContactController extends Controller
         private readonly ContactServiceInterface $contactService
     ) {}
 
-    #[OA\Get(
-        path: "/api/v1/contacts",
-        summary: "List all contacts",
-        tags: ["Contacts"],
-        parameters: [
-            new OA\Parameter(name: "phone", in: "query", required: false, schema: new OA\Schema(type: "string")),
-            new OA\Parameter(name: "email_domain", in: "query", required: false, schema: new OA\Schema(type: "string"))
-        ],
-        responses: [
-            new OA\Response(response: 200, description: "List of contacts")
-        ]
-    )]
-    public function index(Request $request): JsonResponse
+    /**
+     * @OA\Get(
+     *     path="/api/v1/contacts",
+     *     summary="List contacts",
+     *     tags={"Contacts"},
+     *     security={{ "bearerAuth": {} }},
+     *     @OA\Parameter(
+     *         name="phone",
+     *         in="query",
+     *         description="Filter by phone number",
+     *         required=false,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="email",
+     *         in="query",
+     *         description="Filter by email",
+     *         required=false,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="page",
+     *         in="query",
+     *         description="Page number",
+     *         required=false,
+     *         @OA\Schema(type="integer", default=1)
+     *     ),
+     *     @OA\Parameter(
+     *         name="per_page",
+     *         in="query",
+     *         description="Items per page",
+     *         required=false,
+     *         @OA\Schema(type="integer", default=15)
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="List of contacts",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="data", type="array", @OA\Items(ref="#/components/schemas/Contact")),
+     *             @OA\Property(property="meta", type="object"),
+     *             @OA\Property(property="links", type="object")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized"
+     *     )
+     * )
+     */
+    public function index(ListContactsRequest $request): JsonResponse
     {
-        try {
-            $contacts = $this->contactService->getAllContacts($request->only([
-                'phone',
-                'email_domain'
-            ]));
+        $contacts = $this->contactService->listContacts(
+            phone: $request->input('phone'),
+            email: $request->input('email'),
+            perPage: $request->getPerPage()
+        );
 
-            return response()->json($contacts);
-        } catch (ValidationException $e) {
-            return response()->json(['error' => $e->getMessage()], Response::HTTP_BAD_REQUEST);
-        }
+        return response()->json($contacts);
     }
 
     #[OA\Get(

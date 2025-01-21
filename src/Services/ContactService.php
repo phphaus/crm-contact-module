@@ -12,6 +12,8 @@ use Example\CrmExample\Contracts\ContactRepositoryInterface;
 use Example\CrmExample\Exceptions\ValidationException;
 use Example\CrmExample\Services\Validators\ContactValidator;
 use Example\CrmExample\Services\CallService;
+use Illuminate\Pagination\LengthAwarePaginator;
+use App\Models\Contact;
 
 class ContactService implements ContactServiceInterface
 {
@@ -299,5 +301,26 @@ class ContactService implements ContactServiceInterface
     private function getCurrentTenantId(): ?int
     {
         return config('crm.multi_tenant.enabled') ? tenant('id') : null;
+    }
+
+    public function listContacts(
+        ?string $phone = null,
+        ?string $email = null,
+        int $perPage = 15
+    ): LengthAwarePaginator {
+        $query = Contact::query()
+            ->with(['phones', 'emails'])
+            ->when($phone, function ($query, $phone) {
+                $query->whereHas('phones', function ($query) use ($phone) {
+                    $query->where('number', 'like', "%{$phone}%");
+                });
+            })
+            ->when($email, function ($query, $email) {
+                $query->whereHas('emails', function ($query) use ($email) {
+                    $query->where('email', 'like', "%{$email}%");
+                });
+            });
+
+        return $query->paginate($perPage);
     }
 } 
