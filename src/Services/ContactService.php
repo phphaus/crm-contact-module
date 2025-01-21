@@ -203,6 +203,9 @@ class ContactService implements ContactServiceInterface
 
             // Initiate the actual call
             $callService = app(CallService::class);
+
+            // Just return a call status straight away. In reality there are many ways to solve this more elegantly, in an async fashion:
+            // could update the contact, could publish an event, could add message to queue, could send webhook, etc.
             $finalStatus = $callService->initiateCall($phoneNumber);
 
             // Update call record with final status
