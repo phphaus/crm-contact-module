@@ -123,3 +123,19 @@
 - Native array type support
 - More complex deployment requirements
 - SQLite remains for testing only
+
+## 9. Remove Eloquent Factory
+**Date:** 2024-03-19
+
+**Decision:** Remove ContactFactory and use Doctrine's test data creation
+
+**Context:**
+- We're using Doctrine DBAL/ORM for database access
+- The existing ContactFactory was using Eloquent patterns
+- Test data creation should be consistent with our data access layer
+
+**Consequences:**
+- More consistent test data creation using Doctrine
+- Removed unnecessary Eloquent dependencies
+- Tests will use repository pattern for data creation
+- Better alignment with chosen architecture

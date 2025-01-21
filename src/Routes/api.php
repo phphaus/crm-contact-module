@@ -1,6 +1,6 @@
 <?php
 
-use Example\CrmExample\Http\Controllers\Api\ContactController;
+use Example\CrmContactModule\Http\Controllers\Api\ContactController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['api', 'jwt.tenant'])

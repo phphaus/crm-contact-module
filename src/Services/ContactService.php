@@ -1,19 +1,18 @@
 <?php
 
-namespace Example\CrmExample\Services;
+namespace Example\CrmContactModule\Services;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Query\QueryBuilder;
 use Doctrine\DBAL\Types\Types;
-use Example\CrmExample\Exceptions\ContactNotFoundException;
-use Example\CrmExample\Exceptions\DuplicateContactException;
-use Example\CrmExample\Contracts\ContactServiceInterface;
-use Example\CrmExample\Contracts\ContactRepositoryInterface;
-use Example\CrmExample\Exceptions\ValidationException;
-use Example\CrmExample\Services\Validators\ContactValidator;
-use Example\CrmExample\Services\CallService;
+use Example\CrmContactModule\Exceptions\ContactNotFoundException;
+use Example\CrmContactModule\Exceptions\DuplicateContactException;
+use Example\CrmContactModule\Contracts\ContactServiceInterface;
+use Example\CrmContactModule\Contracts\ContactRepositoryInterface;
+use Example\CrmContactModule\Exceptions\ValidationException;
+use Example\CrmContactModule\Services\Validators\ContactValidator;
+use Example\CrmContactModule\Services\CallService;
 use Illuminate\Pagination\LengthAwarePaginator;
-use App\Models\Contact;
 
 class ContactService implements ContactServiceInterface
 {
@@ -306,21 +305,44 @@ class ContactService implements ContactServiceInterface
     public function listContacts(
         ?string $phone = null,
         ?string $email = null,
-        int $perPage = 15
+        int $perPage = 15,
+        int $page = 1
     ): LengthAwarePaginator {
-        $query = Contact::query()
-            ->with(['phones', 'emails'])
-            ->when($phone, function ($query, $phone) {
-                $query->whereHas('phones', function ($query) use ($phone) {
-                    $query->where('number', 'like', "%{$phone}%");
-                });
-            })
-            ->when($email, function ($query, $email) {
-                $query->whereHas('emails', function ($query) use ($email) {
-                    $query->where('email', 'like', "%{$email}%");
-                });
-            });
+        $qb = $this->createBaseQuery()
+            ->select('c.*')
+            ->setFirstResult(($page - 1) * $perPage)
+            ->setMaxResults($perPage);
 
-        return $query->paginate($perPage);
+        if ($phone) {
+            $qb->andWhere('p.number LIKE :phone')
+               ->setParameter('phone', "%{$phone}%", Types::STRING)
+               ->leftJoin('c', 'contact_phones', 'p', 'c.id = p.contact_id');
+        }
+
+        if ($email) {
+            $qb->andWhere('e.email LIKE :email')
+               ->setParameter('email', "%{$email}%", Types::STRING)
+               ->leftJoin('c', 'contact_emails', 'e', 'c.id = e.contact_id');
+        }
+
+        $this->applyTenantContext($qb);
+
+        $total = (clone $qb)
+            ->select('COUNT(DISTINCT c.id)')
+            ->executeQuery()
+            ->fetchOne();
+
+        $items = $qb->executeQuery()->fetchAllAssociative();
+
+        return new LengthAwarePaginator(
+            $items,
+            $total,
+            $perPage,
+            $page,
+            [
+                'path' => request()->url(),
+                'query' => request()->query()
+            ]
+        );
     }
 } 

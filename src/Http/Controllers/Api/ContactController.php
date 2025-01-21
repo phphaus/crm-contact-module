@@ -1,19 +1,19 @@
 <?php
 
-namespace Example\CrmExample\Http\Controllers\Api;
+namespace Example\CrmContactModule\Http\Controllers\Api;
 
-use Example\CrmExample\Contracts\ContactServiceInterface;
-use Example\CrmExample\Http\Requests\Contact\StoreContactRequest;
-use Example\CrmExample\Http\Requests\Contact\UpdateContactRequest;
-use Example\CrmExample\Exceptions\ContactNotFoundException;
-use Example\CrmExample\Exceptions\ValidationException;
-use Example\CrmExample\Exceptions\CallFailedException;
+use Example\CrmContactModule\Contracts\ContactServiceInterface;
+use Example\CrmContactModule\Http\Requests\Contact\StoreContactRequest;
+use Example\CrmContactModule\Http\Requests\Contact\UpdateContactRequest;
+use Example\CrmContactModule\Exceptions\ContactNotFoundException;
+use Example\CrmContactModule\Exceptions\ValidationException;
+use Example\CrmContactModule\Exceptions\CallFailedException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\Response;
-use Example\CrmExample\Http\Requests\ListContactsRequest;
+use Example\CrmContactModule\Http\Requests\ListContactsRequest;
 
 #[OA\Info(version: "1.0.0", title: "CRM Example API")]
 class ContactController extends Controller
@@ -76,7 +76,8 @@ class ContactController extends Controller
         $contacts = $this->contactService->listContacts(
             phone: $request->input('phone'),
             email: $request->input('email'),
-            perPage: $request->getPerPage()
+            perPage: $request->getPerPage(),
+            page: $request->getPage()
         );
 
         return response()->json($contacts);

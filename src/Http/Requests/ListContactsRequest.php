@@ -1,6 +1,6 @@
 <?php
 
-namespace Example\CrmExample\Http\Requests;
+namespace Example\CrmContactModule\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -19,5 +19,10 @@ class ListContactsRequest extends FormRequest
     public function getPerPage(): int
     {
         return $this->input('per_page', 15);
+    }
+
+    public function getPage(): int
+    {
+        return $this->input('page', 1);
     }
 } 
