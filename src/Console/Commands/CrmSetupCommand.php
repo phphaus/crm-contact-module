@@ -54,7 +54,7 @@ class CrmSetupCommand extends Command
 
     private function createTables(Connection $connection): void
     {
-        $migrationPath = database_path('migrations/2024_01_01_000000_create_contacts_tables.php');
+        $migrationPath = database_path('Migrations/2024_01_01_000000_create_contacts_tables.php');
         require_once $migrationPath;
 
         $migration = new \CreateContactsTables();

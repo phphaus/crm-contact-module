@@ -6,7 +6,7 @@ Refer to the following documentation in the `./docs` directory:
 - [API Documentation](./docs/api.md): API design and usage.
 - [CLI Documentation](./docs/cli.md): Instructions for CLI commands.
 - [Technologies Documentation](./docs/technologies.md): Technologies and libraries used.
-- [Readme](./readme.md): General project overview.
+- [App](./app.md): General project overview.
 
 2. Roadmap
 You will record all the features and their progress in the `docs/roadmap.md` file. Do this by adding a new line to the file with the feature name and its progress in form of a checkbox in front of the item. 

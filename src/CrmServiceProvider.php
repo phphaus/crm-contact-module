@@ -33,8 +33,8 @@ class CrmServiceProvider extends ServiceProvider
             ], 'crm-config');
 
             $this->publishes([
-                __DIR__ . '/../database/migrations' => database_path('migrations'),
-            ], 'crm-migrations');
+                __DIR__ . '/../database/Migrations' => database_path('Migrations'),
+            ], 'crm-Migrations');
         }
 
         $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');

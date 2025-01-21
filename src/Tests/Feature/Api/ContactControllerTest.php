@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Example\CrmExample\Http\Controllers\Api;
+namespace Example\CrmExample\Tests\Feature\Controllers\Api;
 
 use Example\CrmExample\CrmServiceProvider;
 use Example\CrmExample\Entities\Contact;
@@ -53,8 +53,8 @@ class ContactControllerTest extends TestCase
 
     protected function defineDatabaseMigrations(): void
     {
-        // Run package migrations
-        $this->loadMigrationsFrom(__DIR__ . '/../../../database/migrations');
+        // Run package Migrations
+        $this->loadMigrationsFrom(__DIR__ . '/../../../database/Migrations');
     }
 
     private function getJwtToken(int $tenantId = 1, int $userId = 1): string

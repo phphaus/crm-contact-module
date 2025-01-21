@@ -24,13 +24,13 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Example\\CrmExample\\Tests\\": "tests/"
+            "Example\\CrmExample\\Tests\\": "src/Tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Example\\CrmExample\\CrmServiceProvider"
+                "Example\\CrmExample\\Providers\\CrmServiceProvider"
             ]
         }
     },
