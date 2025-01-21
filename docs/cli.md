@@ -1,30 +1,57 @@
 # CLI Documentation
 
-## Overview
-This document provides instructions for managing contacts using the Laravel CLI. The `contacts:manage` command supports creating, updating, listing, and deleting contacts via the command line.
+## Available Commands
 
----
+### 1. Setup Command
+**Location:** `src/Console/Commands/CrmSetupCommand.php`
 
-## Command Structure
-The CLI command is defined as:
-```
-php artisan contacts:manage {operation} {--id=} {--name=} {--phone=} {--email=}
+```bash
+php artisan crm:setup [--tenant-id=] [--refresh]
 ```
 
----
+**Options:**
+- `--tenant-id`: The tenant ID to set up
+- `--refresh`: Refresh the database tables
 
-## Supported Operations
+**Examples:**
+```bash
+# Setup for a specific tenant
+php artisan crm:setup --tenant-id=1
 
-### 1. List Contacts
-**Command:**
-```
-php artisan contacts:manage list
-```
-
-### 2. Create Contact
-**Command:**
-```
-php artisan contacts:manage create --name="John Doe" --phone="+61412345678" --email="john.doe@example.com"
+# Refresh all tables
+php artisan crm:setup --refresh
 ```
 
-Refer to the main documentation for full instructions.
+### 2. Contact Management Command
+**Location:** `src/Console/Commands/ManageContactsCommand.php`
+
+```bash
+php artisan contacts:manage {operation} [options]
+```
+
+**Operations:**
+- `list`: List all contacts
+- `create`: Create a new contact
+- `update`: Update an existing contact
+- `delete`: Delete a contact
+- `call`: Record a call
+
+**Options:**
+- `--id=`: Contact ID for update/delete/call operations
+- `--first-name=`: First name for create/update
+- `--last-name=`: Last name for create/update
+- `--phones=*`: Phone numbers in E.164 format
+- `--emails=*`: Email addresses
+- `--call-status=`: Call status (successful/busy/failed)
+
+**Examples:**
+```bash
+# Create a contact
+php artisan contacts:manage create --first-name="John" --last-name="Doe" --phones="+61412345678" --emails="john@example.com"
+
+# Update a contact
+php artisan contacts:manage update --id=1 --first-name="Johnny"
+
+# Record a call
+php artisan contacts:manage call --id=1 --call-status="successful"
+```

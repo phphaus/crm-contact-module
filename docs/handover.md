@@ -1,18 +1,63 @@
 # Project Handover Document
 
 ## Current Status
-The CRM package has completed its initial phase with the following major components implemented:
+The CRM Contact Module has completed its initial phase with the following major components implemented:
+
+### Directory Structure
+```
+src/
+├── Config/                    # Module configuration
+│   └── crm-contact.php       # Main module config
+├── Console/Commands/          # CLI commands
+│   ├── CrmSetupCommand.php   # Database setup
+│   └── ManageContactsCommand.php # Contact management
+├── Contracts/                # Service interfaces and DTOs
+│   ├── ApiResponseInterface.php
+│   ├── CallResponseInterface.php
+│   ├── ContactRepositoryInterface.php
+│   └── ContactServiceInterface.php
+├── DataTransfer/            # Data transfer objects
+│   ├── ContactSearchCriteria.php
+│   ├── CreateContactCommand.php
+│   └── UpdateContactCommand.php
+├── Database/
+│   └── Migrations/         # Database migrations
+├── Entities/               # Doctrine entities
+│   ├── Contact.php
+│   ├── ContactCall.php
+│   ├── ContactEmail.php
+│   └── ContactPhone.php
+├── Exceptions/            # Custom exceptions
+│   ├── CallFailedException.php
+│   ├── ContactNotFoundException.php
+│   └── ValidationException.php
+├── Http/
+│   ├── Controllers/      # HTTP controllers
+│   │   └── ContactController.php
+│   ├── Middleware/       # Custom middleware
+│   │   └── JwtTenantMiddleware.php
+│   ├── Requests/        # Form requests
+│   └── Responses/       # API responses
+├── Providers/           # Service providers
+│   └── CrmContactModuleServiceProvider.php
+├── Routes/             # Route definitions
+│   └── api.php        # API routes
+└── Services/          # Business logic services
+    ├── ContactService.php
+    ├── AuditService.php
+    └── CallService.php
+```
 
 ### Core Components
 1. **Multi-tenant Contact Management**
-   - Contact entity with phones/emails
-   - AU/NZ phone validation
+   - Contact entity with phones/emails (`src/Entities/Contact.php`)
+   - AU/NZ phone validation (`src/Entities/Traits/ValidatesPhoneNumber.php`)
    - Soft deletion
    - Audit logging
    - Search functionality
 
 2. **Call Tracking System**
-   - Call status management
+   - Call status management (`src/Entities/ContactCall.php`)
    - Call history
    - Concurrent call handling
    - Mock call service for testing

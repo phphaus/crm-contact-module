@@ -1,78 +1,138 @@
-# Technologies and Libraries
-
-## Overview
-This document outlines the technologies and libraries used in the CRM module project. Each tool has been selected to ensure scalability, maintainability, and adherence to best practices in modern software development.
-
----
+# Technologies Documentation
 
 ## Core Technologies
 
-### Laravel Framework
-- **Purpose:** Application scaffolding, MVC structure, and routing.
-- **Features:** Eloquent ORM, Middleware, and Blade templates.
+### Database Layer
+- **Doctrine ORM**: Domain-driven database layer
+  - Location: `src/Entities/`
+  - Key Files: 
+    - `Contact.php`
+    - `ContactCall.php`
+    - `ContactEmail.php`
+    - `ContactPhone.php`
+  - Features:
+    - Rich domain modeling
+    - Entity relationships
+    - Domain events
+    - Multi-tenant support
+    - Soft deletes
+    - Audit logging
+    - Value objects
+    - Domain validation
 
-### PostgreSQL
-- **Purpose:** Database management system for data storage.
-- **Features:**
-  - Advanced querying capabilities.
-  - JSON support for unstructured data.
-  - Excellent scalability for multi-tenant applications.
+### API Layer
+- **Laravel API Resources**: Response transformation
+  - Location: `src/Http/Responses/`
+  - Key Files:
+    - `ApiResponse.php`
+    - `ContactResponse.php`
+  - Features:
+    - OpenAPI documentation
+    - JWT authentication
+    - Tenant isolation
 
-### Doctrine DBAL
-- **Purpose:** Enhances database operations and schema introspection.
-- **Features:**
-  - Advanced database abstraction.
-  - Schema management beyond Laravel's built-in migrations.
+### Service Layer
+- **Service Pattern**: Business logic encapsulation
+  - Location: `src/Services/`
+  - Key Files:
+    - `ContactService.php`
+    - `AuditService.php`
+    - `CallService.php`
+  - Features:
+    - Domain service pattern
+    - Aggregate roots
+    - Transaction management
+    - Event handling
+    - Validation
 
-### stancl/tenancy
-- **Purpose:** Multi-tenancy package for Laravel.
-- **Features:**
-  - Tenant database separation.
-  - Tenant-aware routing and middleware.
+### Data Transfer
+- **DTOs**: Data transfer objects
+  - Location: `src/DataTransfer/`
+  - Key Files:
+    - `ContactSearchCriteria.php`
+    - `CreateContactCommand.php`
+    - `UpdateContactCommand.php`
 
-### Docker
-- **Purpose:** Containerized development and deployment.
-- **Features:**
-  - Consistent environments across development, testing, and production.
-  - Simplified dependency management.
+### Contracts
+- **Interfaces**: Service contracts and DTOs
+  - Location: `src/Contracts/`
+  - Key Files:
+    - `ApiResponseInterface.php`
+    - `CallResponseInterface.php`
+    - `ContactServiceInterface.php`
+    - `ContactRepositoryInterface.php`
 
-### GitHub Actions
-- **Purpose:** Continuous Integration and Deployment (CI/CD).
-- **Features:**
-  - Automated testing pipelines.
-  - Static analysis for code quality.
+### Infrastructure
+- **Service Provider**: Module registration
+  - Location: `src/Providers/`
+  - Key Files:
+    - `CrmContactModuleServiceProvider.php`
+  - Features:
+    - Route registration
+    - Config publishing
+    - Service binding
 
-### OpenAPI/Swagger
-- **Purpose:** API documentation and client generation.
-- **Features:**
-  - Comprehensive API specs.
-  - Interactive API exploration.
+### Response Layer
+- **Response Objects**: Standardized API responses
+  - Location: `src/Http/Responses/`
+  - Key Files:
+    - `ApiResponse.php`
+    - `ContactResponse.php`
+  - Features:
+    - Consistent response structure
+    - Error handling
+    - Pagination support
+    - Resource transformation
 
----
+### Service Providers
+- **Module Registration**: Service and route binding
+  - Location: `src/Providers/`
+  - Key Files:
+    - `ContactServiceProvider.php`
+  - Features:
+    - Route registration
+    - Service container bindings
+    - Configuration management
 
-## Testing and Development Tools
+### Domain Layer
+- **Domain Model**: Core business logic and rules
+  - Location: `src/Domain/`
+  - Components:
+    - **Entities**: Rich domain objects with behavior
+    - **Value Objects**: Immutable objects representing concepts
+    - **Domain Events**: Business event objects
+    - **Domain Services**: Complex operations across aggregates
+  - Features:
+    - Strong encapsulation
+    - Business rule enforcement
+    - Domain event handling
+    - Invariant validation
 
-### PHPUnit
-- **Purpose:** Unit and feature testing framework.
-- **Features:**
-  - Mocking capabilities for isolated tests.
-  - Assertions for validating application behavior.
+### Application Layer
+- **Application Services**: Use case implementation
+  - Location: `src/Services/`
+  - Key Files:
+    - `ContactService.php`: Contact management operations
+    - `AuditService.php`: Audit logging
+    - `CallService.php`: Call tracking
+  - Features:
+    - Transaction coordination
+    - Domain event dispatching
+    - Input validation
+    - Response mapping
 
-### PHPStan
-- **Purpose:** Static analysis for PHP code.
-- **Features:**
-  - Detects bugs before runtime.
-  - Ensures adherence to coding standards.
-
-### FakerPHP
-- **Purpose:** Generates mock data for testing.
-- **Features:**
-  - Easily create random, realistic test data.
-
-### Laravel Telescope
-- **Purpose:** Debugging and monitoring tool.
-- **Features:**
-  - Tracks requests, exceptions, and queries.
+### Infrastructure Layer
+- **Persistence**: Data storage implementation
+  - Location: `src/Infrastructure/Persistence/`
+  - Components:
+    - **Repositories**: Domain object persistence
+    - **Entity Mapping**: Doctrine ORM configuration
+    - **Query Services**: Complex query handling
+  - Features:
+    - DDD repository pattern
+    - Doctrine ORM integration
+    - Query optimization
+    - Multi-tenant isolation
 
 ---
 

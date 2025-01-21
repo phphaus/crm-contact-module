@@ -13,6 +13,8 @@ use Example\CrmContactModule\Exceptions\ValidationException;
 use Example\CrmContactModule\Services\Validators\ContactValidator;
 use Example\CrmContactModule\Services\CallService;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Example\CrmContactModule\Contracts\ContactSearchCriteria;
+use Doctrine\ORM\EntityManagerInterface;
 
 class ContactService implements ContactServiceInterface
 {
@@ -20,7 +22,7 @@ class ContactService implements ContactServiceInterface
 
     public function __construct(
         private readonly ContactRepositoryInterface $repository,
-        private readonly Connection $connection,
+        private readonly EntityManagerInterface $entityManager,
         private readonly ContactValidator $validator,
         private readonly AuditService $auditService
     ) {

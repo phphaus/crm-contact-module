@@ -23,9 +23,9 @@
         "Laravel >= 10.0"
     ],
     "author": {
-        "name": "Example Team",
-        "email": "team@example.com",
-        "website": "https://example.com"
+        "name": "phpPhil",
+        "email": "phpPhil@phphaus.com",
+        "website": "https://phphaus.com"
     },
     "supports": {
         "docs": "https://docs.example.com/crm-contact-module",

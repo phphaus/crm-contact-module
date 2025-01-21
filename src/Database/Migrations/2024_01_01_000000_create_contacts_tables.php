@@ -4,6 +4,7 @@ use Doctrine\DBAL\Schema\Schema;
 use Doctrine\DBAL\Types\Types;
 use Illuminate\Database\Migrations\Migration;
 
+// Quick and dirty migration to create all tables - would split this. And use a seeder to populate the tables.
 return new class extends Migration
 {
     public function up(): void

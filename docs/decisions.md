@@ -139,3 +139,95 @@
 - Removed unnecessary Eloquent dependencies
 - Tests will use repository pattern for data creation
 - Better alignment with chosen architecture
+
+## 10. Module Structure
+**Date:** 2024-03-19
+
+**Decision:** Organize code into a modular structure under src/ directory
+
+**Context:**
+- Need clear separation of concerns
+- Must follow Laravel module best practices
+- Should support easy maintenance and testing
+- Must support future scalability
+
+**Consequences:**
+- Better code organization
+- Clear module boundaries
+- Easier to maintain and test
+- Better developer experience
+- Consistent with Laravel module standards
+
+## 11. Response Structure
+**Date:** 2024-03-19
+
+**Decision:** Use dedicated response interfaces and implementations
+
+**Context:**
+- Need consistent API responses
+- Must support multiple response formats
+- Should be easily extensible
+- Must handle errors consistently
+
+**Consequences:**
+- Consistent response structure
+- Better type safety
+- Clear separation of concerns
+- Easier to maintain and test
+- Better API documentation
+
+## 12. Response Interfaces
+**Date:** 2024-03-19
+
+**Decision:** Create separate interfaces for different response types
+
+**Context:**
+- Need to handle different response scenarios (single, collection, error)
+- Must maintain consistent response structure
+- Should support pagination
+- Must be extensible for future response types
+
+**Consequences:**
+- Clear contract for response objects
+- Easy to add new response types
+- Consistent error handling
+- Better type safety
+- Improved maintainability
+
+## 13. Domain-Driven Design with Doctrine
+**Date:** 2024-03-19
+
+**Decision:** Switch from procedural DBAL to DDD-style ORM usage
+
+**Context:**
+- Previous implementation was procedural using DBAL
+- Need better domain modeling and encapsulation
+- Want to leverage Doctrine ORM's full capabilities
+- Should follow DDD principles for better maintainability
+
+**Consequences:**
+- Better domain modeling with proper entities
+- Richer object-oriented design
+- More maintainable business logic
+- Clearer domain boundaries
+- Better encapsulation of business rules
+- More testable code structure
+
+## 14. DDD Architecture Layers
+**Date:** 2024-03-19
+
+**Decision:** Implement strict DDD layering with Doctrine ORM
+
+**Context:**
+- Need clear separation between domain and infrastructure
+- Want to protect domain model from persistence details
+- Must support complex business rules
+- Should enable better testing and maintenance
+
+**Consequences:**
+- Clear architectural boundaries
+- Domain model protected from infrastructure concerns
+- Better testability through abstraction
+- More focused repositories
+- Cleaner service layer
+- Improved maintainability
