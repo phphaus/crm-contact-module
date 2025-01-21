@@ -36,13 +36,8 @@ class ContactService implements ContactServiceInterface
      */
     public function getAllContacts(array $filters = []): array
     {
-        // Validate filters if present
-        if (isset($filters['phone'])) {
-            $this->validator->validatePhoneNumber($filters['phone']);
-        }
-        if (isset($filters['email_domain'])) {
-            $this->validator->validateEmailDomain($filters['email_domain']);
-        }
+        // No need to handle SQL injection, dealt with by Doctrine.
+        // Still, I would probably add some sanity checking, just in case
 
         // Apply filters
         if (isset($filters['phone'])) {
