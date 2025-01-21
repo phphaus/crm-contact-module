@@ -1,1 +1,41 @@
- 
+{
+    "name": "example/crm-example",
+    "description": "A Laravel CRM package with multi-tenant support",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^8.1",
+        "laravel/framework": "^10.0",
+        "doctrine/dbal": "^3.6",
+        "doctrine/orm": "^2.14",
+        "stancl/tenancy": "^3.7"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0",
+        "mockery/mockery": "^1.5",
+        "orchestra/testbench": "^8.0",
+        "nunomaduro/collision": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Example\\CrmExample\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Example\\CrmExample\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Example\\CrmExample\\CrmServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+} 
