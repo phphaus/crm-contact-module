@@ -31,9 +31,11 @@ This project demonstrates a CRM module using Laravel to manage contacts. The app
   - `console.php` - Defines CLI commands for contact operations.
 
 - **`docs/`**
+  - `app.md` - General Project Documentation (this file).
   - `api.md` - OpenAPI/Swagger documentation for APIs.
   - `cli.md` - Instructions for CLI commands.
-  - `readme.md` - Project rationale and technical decisions.
+  - `technologies.md` - Lists and describes the technologies and libraries used in the project.
+  - `features.md` - Detailed requirements and specifications for features.
 
 ---
 
