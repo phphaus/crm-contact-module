@@ -1,15 +1,15 @@
 <?php
 
-namespace Example\CrmExample\Providers;
+namespace Example\CrmContactModule\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class CrmServiceProvider extends ServiceProvider
+class CrmContactModuleServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/../Config/crm.php', 'crm'
+            __DIR__ . '/../Config/crm-contact.php', 'crm-contact'
         );
     }
 
@@ -19,8 +19,8 @@ class CrmServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
         
         $this->publishes([
-            __DIR__ . '/../Config/crm.php' => config_path('crm.php'),
-        ], 'crm-config');
+            __DIR__ . '/../Config/crm-contact.php' => config_path('crm-contact.php'),
+        ], 'crm-contact-config');
 
         if ($this->app->runningInConsole()) {
             $this->loadFactoriesFrom(__DIR__ . '/../Database/Factories');

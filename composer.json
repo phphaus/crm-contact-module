@@ -1,6 +1,6 @@
 {
-    "name": "example/crm-example",
-    "description": "A Laravel CRM package with multi-tenant support",
+    "name": "example/crm-contact-module",
+    "description": "Contact Management Module for Laravel CRM with multi-tenant support",
     "type": "library",
     "license": "MIT",
     "require": {
@@ -19,18 +19,21 @@
     },
     "autoload": {
         "psr-4": {
-            "Example\\CrmExample\\": "src/"
-        }
+            "Example\\CrmContactModule\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
-            "Example\\CrmExample\\Tests\\": "src/Tests/"
+            "Example\\CrmContactModule\\Tests\\": "src/Tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Example\\CrmExample\\Providers\\CrmServiceProvider"
+                "Example\\CrmContactModule\\Providers\\CrmContactModuleServiceProvider"
             ]
         }
     },

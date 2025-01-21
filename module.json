@@ -1,0 +1,35 @@
+{
+    "name": "CrmContact",
+    "alias": "crm-contact",
+    "description": "Contact Management Module for Laravel CRM",
+    "keywords": [
+        "laravel",
+        "crm",
+        "contacts",
+        "multi-tenant"
+    ],
+    "version": "1.0.0",
+    "active": 1,
+    "order": 1,
+    "providers": [
+        "Example\\CrmContactModule\\Providers\\CrmContactModuleServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "src/helpers.php"
+    ],
+    "requires": [
+        "PHP >= 8.1",
+        "Laravel >= 10.0"
+    ],
+    "author": {
+        "name": "Example Team",
+        "email": "team@example.com",
+        "website": "https://example.com"
+    },
+    "supports": {
+        "docs": "https://docs.example.com/crm-contact-module",
+        "issues": "https://github.com/example/crm-contact-module/issues",
+        "source": "https://github.com/example/crm-contact-module"
+    }
+}
