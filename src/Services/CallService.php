@@ -40,6 +40,9 @@ class CallService
         }
     }
 
+    /**
+     * DUMMY method to demo async/sync behaviour
+     */
     private function fetchThings()
     {
         // Simulate API call
