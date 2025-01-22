@@ -1,10 +1,10 @@
 <?php
 
-namespace Example\CrmExample\Tests\Feature\Controllers\Api;
+namespace Example\CrmContactModule\Tests\Feature\Controllers\Api;
 
-use Example\CrmExample\CrmServiceProvider;
-use Example\CrmExample\Entities\Contact;
-use Example\CrmExample\Services\Auth\JwtParser;
+use Example\CrmContactModule\CrmServiceProvider;
+use Example\CrmContactModule\Entities\Contact;
+use Example\CrmContactModule\Services\Auth\JwtParser;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Orchestra\Testbench\TestCase;
 
@@ -25,10 +25,10 @@ class ContactControllerTest extends TestCase
         $app['config']->set('crm.multi_tenant.enabled', true);
         $app['config']->set('crm.contacts.limits.phones', 10);
         $app['config']->set('crm.contacts.limits.emails', 10);
-        
+
         // Use SQLite for quick tests, but allow PostgreSQL override via env
         $app['config']->set('database.default', 'testing');
-        
+
         if (env('TEST_DB_CONNECTION') === 'pgsql') {
             $app['config']->set('database.connections.testing', [
                 'driver' => 'pgsql',
@@ -70,7 +70,7 @@ class ContactControllerTest extends TestCase
     {
         // Arrange
         $token = $this->getJwtToken();
-        
+
         // Create test contacts with phones and emails
         Contact::factory()
             ->count(20)
@@ -119,4 +119,4 @@ class ContactControllerTest extends TestCase
         $this->getJson('/api/v1/contacts')
             ->assertStatus(401);
     }
-} 
+}

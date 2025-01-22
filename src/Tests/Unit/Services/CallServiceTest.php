@@ -1,9 +1,9 @@
 <?php
 
-namespace Example\CrmExample\Tests\Unit\Services;
+namespace Example\CrmContactModule\Tests\Unit\Services;
 
-use Example\CrmExample\Services\CallService;
-use Example\CrmExample\Exceptions\CallFailedException;
+use Example\CrmContactModule\Services\CallService;
+use Example\CrmContactModule\Exceptions\CallFailedException;
 use PHPUnit\Framework\TestCase;
 
 class CallServiceTest extends TestCase
@@ -37,4 +37,4 @@ class CallServiceTest extends TestCase
         $this->assertGreaterThan(0.1, $duration); // At least 100ms delay
         $this->assertLessThan(0.6, $duration); // At most 500ms delay
     }
-} 
+}

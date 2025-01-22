@@ -1,9 +1,9 @@
 <?php
 
-namespace Example\CrmExample\Tests\Unit\Services\Validators;
+namespace Example\CrmContactModule\Tests\Unit\Services\Validators;
 
-use Example\CrmExample\Exceptions\ValidationException;
-use Example\CrmExample\Services\Validators\ContactValidator;
+use Example\CrmContactModule\Exceptions\ValidationException;
+use Example\CrmContactModule\Services\Validators\ContactValidator;
 use PHPUnit\Framework\TestCase;
 
 class ContactValidatorTest extends TestCase
@@ -62,4 +62,4 @@ class ContactValidatorTest extends TestCase
 
         $this->addToAssertionCount(1); // No exception thrown
     }
-} 
+}

@@ -1,9 +1,9 @@
 <?php
 
-namespace Example\CrmExample\Http\Middleware;
+namespace Example\CrmContactModule\Http\Middleware;
 
 use Closure;
-use Example\CrmExample\Services\Auth\JwtParser;
+use Example\CrmContactModule\Services\Auth\JwtParser;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -22,7 +22,7 @@ class JwtTenantMiddleware
 
         try {
             $payload = $this->jwtParser->decode($token);
-            
+
             // Add tenant and user context to the request
             $request->merge([
                 'tenant_id' => $payload['tenant_id'],
@@ -38,4 +38,4 @@ class JwtTenantMiddleware
             return response()->json(['error' => 'Invalid token'], Response::HTTP_UNAUTHORIZED);
         }
     }
-} 
+}

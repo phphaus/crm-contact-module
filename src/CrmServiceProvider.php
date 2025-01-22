@@ -1,15 +1,15 @@
 <?php
 
-namespace Example\CrmExample;
+namespace Example\CrmContactModule;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Example\CrmExample\Contracts\ContactRepositoryInterface;
-use Example\CrmExample\Contracts\ContactServiceInterface;
-use Example\CrmExample\Http\Middleware\JwtTenantMiddleware;
-use Example\CrmExample\Repositories\DoctrineContactRepository;
-use Example\CrmExample\Services\AuditService;
-use Example\CrmExample\Services\CallService;
-use Example\CrmExample\Services\ContactService;
+use Example\CrmContactModule\Contracts\ContactRepositoryInterface;
+use Example\CrmContactModule\Contracts\ContactServiceInterface;
+use Example\CrmContactModule\Http\Middleware\JwtTenantMiddleware;
+use Example\CrmContactModule\Repositories\DoctrineContactRepository;
+use Example\CrmContactModule\Services\AuditService;
+use Example\CrmContactModule\Services\CallService;
+use Example\CrmContactModule\Services\ContactService;
 use Illuminate\Support\ServiceProvider;
 
 class CrmServiceProvider extends ServiceProvider
@@ -39,4 +39,4 @@ class CrmServiceProvider extends ServiceProvider
 
         $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
     }
-} 
+}

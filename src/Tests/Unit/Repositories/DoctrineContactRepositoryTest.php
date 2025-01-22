@@ -1,11 +1,11 @@
 <?php
 
-namespace Example\CrmExample\Tests\Unit\Repositories;
+namespace Example\CrmContactModule\Tests\Unit\Repositories;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
-use Example\CrmExample\Entities\Contact;
-use Example\CrmExample\Repositories\DoctrineContactRepository;
+use Example\CrmContactModule\Entities\Contact;
+use Example\CrmContactModule\Repositories\DoctrineContactRepository;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 
@@ -18,10 +18,10 @@ class DoctrineContactRepositoryTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         $this->em = Mockery::mock(EntityManagerInterface::class);
         $this->doctrineRepository = Mockery::mock(EntityRepository::class);
-        
+
         $this->em->shouldReceive('getRepository')
             ->with(Contact::class)
             ->andReturn($this->doctrineRepository);
@@ -48,7 +48,7 @@ class DoctrineContactRepositoryTest extends TestCase
             ->andReturn($contact);
 
         $result = $this->repository->findById(1);
-        
+
         $this->assertEquals(1, $result['id']);
         $this->assertEquals('John', $result['first_name']);
     }
@@ -73,7 +73,7 @@ class DoctrineContactRepositoryTest extends TestCase
         $this->em->shouldReceive('flush')->once();
 
         $result = $this->repository->create($data);
-        
+
         $this->assertArrayHasKey('id', $result);
         $this->assertEquals('John', $result['first_name']);
     }
@@ -97,4 +97,4 @@ class DoctrineContactRepositoryTest extends TestCase
         parent::tearDown();
         Mockery::close();
     }
-} 
+}

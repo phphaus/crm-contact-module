@@ -1,8 +1,8 @@
 <?php
 
-namespace Example\CrmExample\Http\Requests\Contact;
+namespace Example\CrmContactModule\Http\Requests\Contact;
 
-use Example\CrmExample\Http\Requests\BaseRequest;
+use Example\CrmContactModule\Http\Requests\BaseRequest;
 use Illuminate\Support\Facades\Config;
 
 class StoreContactRequest extends BaseRequest
@@ -33,4 +33,4 @@ class StoreContactRequest extends BaseRequest
             'emails.max' => "Maximum of $maxEmails email addresses allowed"
         ];
     }
-} 
+}

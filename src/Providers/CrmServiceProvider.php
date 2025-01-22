@@ -1,6 +1,6 @@
 <?php
 
-namespace Example\CrmExample\Providers;
+namespace Example\CrmContactModule\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -17,7 +17,7 @@ class CrmServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__ . '/../Routes/api.php');
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
-        
+
         $this->publishes([
             __DIR__ . '/../Config/crm.php' => config_path('crm.php'),
         ], 'crm-config');
@@ -26,4 +26,4 @@ class CrmServiceProvider extends ServiceProvider
             $this->loadFactoriesFrom(__DIR__ . '/../Database/Factories');
         }
     }
-} 
+}

@@ -1,10 +1,10 @@
 <?php
 
-namespace Example\CrmExample\Tests\Unit;
+namespace Example\CrmContactModule\Tests\Unit;
 
-use Example\CrmExample\Http\Middleware\JwtTenantMiddleware;
-use Example\CrmExample\Services\Auth\JwtParser;
-use Example\CrmExample\Tests\TestCase;
+use Example\CrmContactModule\Http\Middleware\JwtTenantMiddleware;
+use Example\CrmContactModule\Services\Auth\JwtParser;
+use Example\CrmContactModule\Tests\TestCase;
 use Illuminate\Http\Request;
 
 class JwtTenantMiddlewareTest extends TestCase
@@ -53,4 +53,4 @@ class JwtTenantMiddlewareTest extends TestCase
         $this->assertEquals(401, $response->getStatusCode());
         $this->assertEquals('Invalid token', json_decode($response->getContent())->error);
     }
-} 
+}

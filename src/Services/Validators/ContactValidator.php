@@ -1,8 +1,8 @@
 <?php
 
-namespace Example\CrmExample\Services\Validators;
+namespace Example\CrmContactModule\Services\Validators;
 
-use Example\CrmExample\Exceptions\ValidationException;
+use Example\CrmContactModule\Exceptions\ValidationException;
 
 class ContactValidator
 {
@@ -100,4 +100,4 @@ class ContactValidator
             throw new ValidationException('Invalid email domain format');
         }
     }
-} 
+}

@@ -1,15 +1,15 @@
 <?php
 
-namespace Example\CrmExample\Repositories;
+namespace Example\CrmContactModule\Repositories;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Example\CrmExample\Contracts\ContactRepositoryInterface;
-use Example\CrmExample\Entities\Contact;
-use Example\CrmExample\Entities\ContactPhone;
-use Example\CrmExample\Entities\ContactEmail;
-use Example\CrmExample\Entities\ContactCall;
-use Example\CrmExample\Exceptions\ContactNotFoundException;
-use Example\CrmExample\Exceptions\ValidationException;
+use Example\CrmContactModule\Contracts\ContactRepositoryInterface;
+use Example\CrmContactModule\Entities\Contact;
+use Example\CrmContactModule\Entities\ContactPhone;
+use Example\CrmContactModule\Entities\ContactEmail;
+use Example\CrmContactModule\Entities\ContactCall;
+use Example\CrmContactModule\Exceptions\ContactNotFoundException;
+use Example\CrmContactModule\Exceptions\ValidationException;
 
 class DoctrineContactRepository implements ContactRepositoryInterface
 {
@@ -32,7 +32,7 @@ class DoctrineContactRepository implements ContactRepositoryInterface
     public function findByPhone(string $phone): array
     {
         $qb = $this->em->createQueryBuilder();
-        
+
         $contacts = $qb->select('c')
             ->from(Contact::class, 'c')
             ->join('c.phones', 'p')
@@ -50,7 +50,7 @@ class DoctrineContactRepository implements ContactRepositoryInterface
     public function findByEmailDomain(string $domain): array
     {
         $qb = $this->em->createQueryBuilder();
-        
+
         $contacts = $qb->select('c')
             ->from(Contact::class, 'c')
             ->join('c.emails', 'e')
@@ -220,4 +220,4 @@ class DoctrineContactRepository implements ContactRepositoryInterface
         }
         return $tenantId;
     }
-} 
+}

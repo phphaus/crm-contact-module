@@ -1,16 +1,16 @@
 <?php
 
-namespace Example\CrmExample\Console\Commands;
+namespace Example\CrmContactModule\Console\Commands;
 
-use Example\CrmExample\Contracts\ContactServiceInterface;
-use Example\CrmExample\Exceptions\ContactNotFoundException;
-use Example\CrmExample\Exceptions\ValidationException;
+use Example\CrmContactModule\Contracts\ContactServiceInterface;
+use Example\CrmContactModule\Exceptions\ContactNotFoundException;
+use Example\CrmContactModule\Exceptions\ValidationException;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Helper\Table;
 
 class ManageContactsCommand extends Command
 {
-    protected $signature = 'contacts:manage 
+    protected $signature = 'contacts:manage
         {operation : Operation to perform (list/create/update/delete/call)}
         {--id= : Contact ID for update/delete/call operations}
         {--first-name= : First name for create/update}
@@ -125,7 +125,7 @@ class ManageContactsCommand extends Command
     private function recordCall(): int
     {
         $this->validateRequiredOptions(['id', 'call-status']);
-        
+
         $id = (int) $this->option('id');
         $status = $this->option('call-status');
 
@@ -147,4 +147,4 @@ class ManageContactsCommand extends Command
             }
         }
     }
-} 
+}

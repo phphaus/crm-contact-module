@@ -1,6 +1,6 @@
 <?php
 
-namespace Example\CrmExample\Entities\Traits;
+namespace Example\CrmContactModule\Entities\Traits;
 
 trait ValidatesPhoneNumber
 {

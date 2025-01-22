@@ -1,6 +1,6 @@
 <?php
 
-namespace Example\CrmExample\Entities;
+namespace Example\CrmContactModule\Entities;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -151,4 +151,4 @@ class Contact
     }
 
     // Getters and setters...
-} 
+}

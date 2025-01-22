@@ -1,6 +1,6 @@
 <?php
 
-namespace Example\CrmExample\Contracts;
+namespace Example\CrmContactModule\Contracts;
 
 interface ContactInterface
 {
@@ -10,4 +10,4 @@ interface ContactInterface
     public function getPhones(): array;
     public function getEmails(): array;
     public function getCalls(): array;
-} 
+}

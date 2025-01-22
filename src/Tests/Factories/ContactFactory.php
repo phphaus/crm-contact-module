@@ -1,8 +1,8 @@
 <?php
 
-namespace Example\CrmExample\Tests\Factories;
+namespace Example\CrmContactModule\Tests\Factories;
 
-use Example\CrmExample\Contracts\ContactServiceInterface;
+use Example\CrmContactModule\Contracts\ContactServiceInterface;
 use Illuminate\Container\Container;
 
 class ContactFactory
@@ -37,4 +37,4 @@ class ContactFactory
             range(1, $count)
         );
     }
-} 
+}

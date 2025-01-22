@@ -1,13 +1,13 @@
 <?php
 
-namespace Example\CrmExample\Tests\Unit\Services;
+namespace Example\CrmContactModule\Tests\Unit\Services;
 
 use Doctrine\DBAL\Connection;
-use Example\CrmExample\Contracts\ContactRepositoryInterface;
-use Example\CrmExample\Exceptions\ContactNotFoundException;
-use Example\CrmExample\Services\AuditService;
-use Example\CrmExample\Services\ContactService;
-use Example\CrmExample\Services\Validators\ContactValidator;
+use Example\CrmContactModule\Contracts\ContactRepositoryInterface;
+use Example\CrmContactModule\Exceptions\ContactNotFoundException;
+use Example\CrmContactModule\Services\AuditService;
+use Example\CrmContactModule\Services\ContactService;
+use Example\CrmContactModule\Services\Validators\ContactValidator;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 
@@ -22,7 +22,7 @@ class ContactServiceTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         $this->repository = Mockery::mock(ContactRepositoryInterface::class);
         $this->connection = Mockery::mock(Connection::class);
         $this->validator = new ContactValidator();
@@ -133,4 +133,4 @@ class ContactServiceTest extends TestCase
         parent::tearDown();
         Mockery::close();
     }
-} 
+}

@@ -1,10 +1,10 @@
 <?php
 
-namespace Example\CrmExample\Tests\Unit\Entities;
+namespace Example\CrmContactModule\Tests\Unit\Entities;
 
-use Example\CrmExample\Entities\Contact;
-use Example\CrmExample\Entities\ContactPhone;
-use Example\CrmExample\Entities\ContactEmail;
+use Example\CrmContactModule\Entities\Contact;
+use Example\CrmContactModule\Entities\ContactPhone;
+use Example\CrmContactModule\Entities\ContactEmail;
 use PHPUnit\Framework\TestCase;
 use Illuminate\Support\Facades\Config;
 
@@ -35,7 +35,7 @@ class ContactTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('First name must be at least 2 characters');
-        
+
         $this->contact->setFirstName('J');
     }
 
@@ -46,7 +46,7 @@ class ContactTest extends TestCase
 
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Maximum of 2 phone numbers allowed');
-        
+
         $this->contact->addPhone(new ContactPhone($this->contact, '+61412345670', 1));
     }
 
@@ -57,7 +57,7 @@ class ContactTest extends TestCase
 
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Maximum of 2 email addresses allowed');
-        
+
         $this->contact->addEmail(new ContactEmail($this->contact, 'john@another.com', 1));
     }
 
@@ -78,4 +78,4 @@ class ContactTest extends TestCase
         $this->contact->setFirstName('Jane');
         $this->assertGreaterThan($originalTime, $this->contact->getUpdatedAt());
     }
-} 
+}

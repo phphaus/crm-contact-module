@@ -1,6 +1,6 @@
 <?php
 
-namespace Example\CrmExample\Console\Commands;
+namespace Example\CrmContactModule\Console\Commands;
 
 use Doctrine\DBAL\Connection;
 use Illuminate\Console\Command;
@@ -66,4 +66,4 @@ class CrmSetupCommand extends Command
         // Add any tenant-specific setup here
         // For example, creating default contacts, etc.
     }
-} 
+}

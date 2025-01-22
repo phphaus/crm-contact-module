@@ -1,10 +1,10 @@
 <?php
 
-namespace Example\CrmExample\Entities;
+namespace Example\CrmContactModule\Entities;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Example\CrmExample\Entities\Traits\ValidatesPhoneNumber;
+use Example\CrmContactModule\Entities\Traits\ValidatesPhoneNumber;
 use Illuminate\Support\Facades\Config;
 
 #[ORM\Entity]
@@ -82,4 +82,4 @@ class ContactCall
     {
         return $this->phoneNumber;
     }
-} 
+}

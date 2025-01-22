@@ -10,7 +10,7 @@ use Example\CrmContactModule\Exceptions\DuplicateContactException;
 use Example\CrmContactModule\Exceptions\ValidationException;
 use Example\CrmContactModule\Services\Validators\ContactValidator;
 use Example\CrmContactModule\Services\CallService;
-use Example\CrmExample\Contracts\ContactServiceInterface;
+use Example\CrmContactModule\Contracts\ContactServiceInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Example\CrmContactModule\Contracts\ContactSearchCriteria;
 use Doctrine\ORM\EntityManagerInterface;
@@ -344,4 +344,4 @@ class ContactService implements ContactServiceInterface
             ]
         );
     }
-} 
+}

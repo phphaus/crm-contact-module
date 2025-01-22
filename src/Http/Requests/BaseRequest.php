@@ -1,6 +1,6 @@
 <?php
 
-namespace Example\CrmExample\Http\Requests;
+namespace Example\CrmContactModule\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -11,4 +11,4 @@ abstract class BaseRequest extends FormRequest
         // Authorization is handled by middleware
         return true;
     }
-} 
+}

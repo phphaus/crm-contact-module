@@ -1,9 +1,9 @@
 <?php
 
-namespace Example\CrmExample\Tests\Feature\Api;
+namespace Example\CrmContactModule\Tests\Feature\Api;
 
-use Example\CrmExample\Tests\TestCase;
-use Example\CrmExample\Tests\Factories\ContactFactory;
+use Example\CrmContactModule\Tests\TestCase;
+use Example\CrmContactModule\Tests\Factories\ContactFactory;
 use Illuminate\Support\Facades\Config;
 
 class ContactApiTest extends TestCase
@@ -13,9 +13,9 @@ class ContactApiTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         $this->factory = new ContactFactory();
-        
+
         // Mock JWT middleware for testing
         $this->withHeaders([
             'Authorization' => 'Bearer ' . $this->generateTestToken(),
@@ -201,4 +201,4 @@ class ContactApiTest extends TestCase
             'user_id' => 1
         ]));
     }
-} 
+}

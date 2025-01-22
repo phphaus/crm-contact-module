@@ -1,8 +1,8 @@
 <?php
 
-namespace Example\CrmExample\Tests\Unit\Entities\Traits;
+namespace Example\CrmContactModule\Tests\Unit\Entities\Traits;
 
-use Example\CrmExample\Entities\Traits\ValidatesPhoneNumber;
+use Example\CrmContactModule\Entities\Traits\ValidatesPhoneNumber;
 use PHPUnit\Framework\TestCase;
 
 class ValidatesPhoneNumberTest extends TestCase
@@ -14,7 +14,7 @@ class ValidatesPhoneNumberTest extends TestCase
         parent::setUp();
         $this->validator = new class {
             use ValidatesPhoneNumber;
-            
+
             public function validate(string $number): void
             {
                 $this->validatePhoneNumber($number);
@@ -69,4 +69,4 @@ class ValidatesPhoneNumberTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $this->validator->validate('0412345678');
     }
-} 
+}

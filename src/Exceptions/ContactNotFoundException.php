@@ -1,7 +1,7 @@
 <?php
 
-namespace Example\CrmExample\Exceptions;
+namespace Example\CrmContactModule\Exceptions;
 
 class ContactNotFoundException extends \RuntimeException
 {
-} 
+}

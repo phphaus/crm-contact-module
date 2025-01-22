@@ -1,8 +1,8 @@
 <?php
 
-namespace Example\CrmExample\Services;
+namespace Example\CrmContactModule\Services;
 
-use Example\CrmExample\Exceptions\CallFailedException;
+use Example\CrmContactModule\Exceptions\CallFailedException;
 use Illuminate\Support\Facades\Http;
 use React\Http\Browser;
 use React\EventLoop\Factory;
@@ -79,4 +79,4 @@ class CallService
         // Return the deferred promise
         return $deferred->promise();
     }
-} 
+}

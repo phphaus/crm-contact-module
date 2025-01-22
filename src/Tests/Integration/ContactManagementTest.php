@@ -1,12 +1,12 @@
 <?php
 
-namespace Example\CrmExample\Tests\Integration;
+namespace Example\CrmContactModule\Tests\Integration;
 
-use Example\CrmExample\Entities\Contact;
-use Example\CrmExample\Services\AuditService;
-use Example\CrmExample\Services\CallService;
-use Example\CrmExample\Services\ContactService;
-use Example\CrmExample\Tests\TestCase;
+use Example\CrmContactModule\Entities\Contact;
+use Example\CrmContactModule\Services\AuditService;
+use Example\CrmContactModule\Services\CallService;
+use Example\CrmContactModule\Services\ContactService;
+use Example\CrmContactModule\Tests\TestCase;
 use Illuminate\Support\Facades\Config;
 
 class ContactManagementTest extends TestCase
@@ -70,7 +70,7 @@ class ContactManagementTest extends TestCase
         $this->service->deleteContact($contact['id']);
 
         // Verify contact is not found
-        $this->expectException(\Example\CrmExample\Exceptions\ContactNotFoundException::class);
+        $this->expectException(\Example\CrmContactModule\Exceptions\ContactNotFoundException::class);
         $this->service->getContact($contact['id']);
     }
 
@@ -86,7 +86,7 @@ class ContactManagementTest extends TestCase
 
         // Switch to tenant 2
         $this->setTenantId(2);
-        
+
         // Create contact for tenant 2
         $contact2 = $this->service->createContact([
             'first_name' => 'Jane',
@@ -95,7 +95,7 @@ class ContactManagementTest extends TestCase
         ]);
 
         // Tenant 2 should not see tenant 1's contact
-        $this->expectException(\Example\CrmExample\Exceptions\ContactNotFoundException::class);
+        $this->expectException(\Example\CrmContactModule\Exceptions\ContactNotFoundException::class);
         $this->service->getContact($contact1['id']);
     }
 
@@ -126,4 +126,4 @@ class ContactManagementTest extends TestCase
     {
         $this->app->bind('tenant.id', fn() => $id);
     }
-} 
+}

@@ -1,9 +1,9 @@
 <?php
 
-namespace Example\CrmExample\Tests\Unit\Http\Middleware;
+namespace Example\CrmContactModule\Tests\Unit\Http\Middleware;
 
-use Example\CrmExample\Http\Middleware\JwtTenantMiddleware;
-use Example\CrmExample\Services\Auth\JwtParser;
+use Example\CrmContactModule\Http\Middleware\JwtTenantMiddleware;
+use Example\CrmContactModule\Services\Auth\JwtParser;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Response;
@@ -42,7 +42,7 @@ class JwtTenantMiddlewareTest extends TestCase
     public function test_rejects_missing_token(): void
     {
         $request = Request::create('/test');
-        
+
         $response = $this->middleware->handle($request, function () {
             return new Response();
         });
@@ -55,7 +55,7 @@ class JwtTenantMiddlewareTest extends TestCase
     {
         $request = Request::create('/test');
         $request->headers->set('Authorization', 'Bearer invalid.token');
-        
+
         $response = $this->middleware->handle($request, function () {
             return new Response();
         });
@@ -63,4 +63,4 @@ class JwtTenantMiddlewareTest extends TestCase
         $this->assertEquals(Response::HTTP_UNAUTHORIZED, $response->getStatusCode());
         $this->assertStringContainsString('Invalid token', $response->getContent());
     }
-} 
+}

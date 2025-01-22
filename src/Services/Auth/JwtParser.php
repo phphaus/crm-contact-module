@@ -1,6 +1,6 @@
 <?php
 
-namespace Example\CrmExample\Services\Auth;
+namespace Example\CrmContactModule\Services\Auth;
 
 class JwtParser
 {
@@ -22,7 +22,7 @@ class JwtParser
             }
 
             $payload = json_decode(base64_decode($parts[1]), true);
-            
+
             if (!isset($payload['tenant_id']) || !isset($payload['user_id'])) {
                 throw new \RuntimeException('Invalid token payload');
             }
@@ -38,7 +38,7 @@ class JwtParser
 
     /**
      * Mock implementation of JWT token encoder
-     * 
+     *
      * @param array{tenant_id: int, user_id: int} $payload
      */
     public function encode(array $payload): string
@@ -50,4 +50,4 @@ class JwtParser
 
         return "$header.$payload.$signature";
     }
-} 
+}

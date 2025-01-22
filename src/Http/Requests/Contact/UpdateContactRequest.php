@@ -1,8 +1,8 @@
 <?php
 
-namespace Example\CrmExample\Http\Requests\Contact;
+namespace Example\CrmContactModule\Http\Requests\Contact;
 
-use Example\CrmExample\Http\Requests\BaseRequest;
+use Example\CrmContactModule\Http\Requests\BaseRequest;
 
 class UpdateContactRequest extends BaseRequest
 {
@@ -26,4 +26,4 @@ class UpdateContactRequest extends BaseRequest
             'emails.max' => 'Maximum of 10 email addresses allowed'
         ];
     }
-} 
+}

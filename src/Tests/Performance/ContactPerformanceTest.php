@@ -1,9 +1,9 @@
 <?php
 
-namespace Example\CrmExample\Tests\Performance;
+namespace Example\CrmContactModule\Tests\Performance;
 
-use Example\CrmExample\Services\ContactService;
-use Example\CrmExample\Tests\TestCase;
+use Example\CrmContactModule\Services\ContactService;
+use Example\CrmContactModule\Tests\TestCase;
 use Illuminate\Support\Facades\DB;
 
 class ContactPerformanceTest extends TestCase
@@ -54,7 +54,7 @@ class ContactPerformanceTest extends TestCase
         $this->createTestContacts(1000);
 
         $startTime = microtime(true);
-        
+
         // Test search by phone
         $contacts = $this->service->getAllContacts([
             'phone' => '123456'
@@ -79,7 +79,7 @@ class ContactPerformanceTest extends TestCase
         ]);
 
         $startTime = microtime(true);
-        
+
         // Simulate concurrent updates
         $promises = [];
         for ($i = 0; $i < 10; $i++) {
@@ -119,4 +119,4 @@ class ContactPerformanceTest extends TestCase
             throw $e;
         }
     }
-} 
+}

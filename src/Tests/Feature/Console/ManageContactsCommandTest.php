@@ -1,9 +1,9 @@
 <?php
 
-namespace Example\CrmExample\Tests\Feature\Console;
+namespace Example\CrmContactModule\Tests\Feature\Console;
 
-use Example\CrmExample\Contracts\ContactServiceInterface;
-use Example\CrmExample\Tests\TestCase;
+use Example\CrmContactModule\Contracts\ContactServiceInterface;
+use Example\CrmContactModule\Tests\TestCase;
 use Mockery;
 
 class ManageContactsCommandTest extends TestCase
@@ -70,4 +70,4 @@ class ManageContactsCommandTest extends TestCase
             ->assertFailed()
             ->expectsOutput('Option --first-name is required');
     }
-} 
+}

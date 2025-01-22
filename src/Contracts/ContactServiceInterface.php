@@ -1,6 +1,6 @@
 <?php
 
-namespace Example\CrmExample\Contracts;
+namespace Example\CrmContactModule\Contracts;
 
 interface ContactServiceInterface
 {
@@ -15,7 +15,7 @@ interface ContactServiceInterface
     /**
      * Get a contact by ID
      *
-     * @throws \Example\CrmExample\Exceptions\ContactNotFoundException
+     * @throws \Example\CrmContactModule\Exceptions\ContactNotFoundException
      */
     public function getContact(int $id): array;
 
@@ -23,8 +23,8 @@ interface ContactServiceInterface
      * Create a new contact
      *
      * @param array<string, mixed> $data
-     * @throws \Example\CrmExample\Exceptions\ValidationException
-     * @throws \Example\CrmExample\Exceptions\DuplicateContactException
+     * @throws \Example\CrmContactModule\Exceptions\ValidationException
+     * @throws \Example\CrmContactModule\Exceptions\DuplicateContactException
      */
     public function createContact(array $data): array;
 
@@ -32,23 +32,23 @@ interface ContactServiceInterface
      * Update an existing contact
      *
      * @param array<string, mixed> $data
-     * @throws \Example\CrmExample\Exceptions\ContactNotFoundException
-     * @throws \Example\CrmExample\Exceptions\ValidationException
+     * @throws \Example\CrmContactModule\Exceptions\ContactNotFoundException
+     * @throws \Example\CrmContactModule\Exceptions\ValidationException
      */
     public function updateContact(int $id, array $data): array;
 
     /**
      * Delete a contact
      *
-     * @throws \Example\CrmExample\Exceptions\ContactNotFoundException
+     * @throws \Example\CrmContactModule\Exceptions\ContactNotFoundException
      */
     public function deleteContact(int $id): void;
 
     /**
      * Record a call for a contact
      *
-     * @throws \Example\CrmExample\Exceptions\ContactNotFoundException
-     * @throws \Example\CrmExample\Exceptions\ValidationException
+     * @throws \Example\CrmContactModule\Exceptions\ContactNotFoundException
+     * @throws \Example\CrmContactModule\Exceptions\ValidationException
      */
     public function recordCall(int $id, string $status): void;
-} 
+}

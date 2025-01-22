@@ -1,6 +1,6 @@
 <?php
 
-namespace Example\CrmExample\Services;
+namespace Example\CrmContactModule\Services;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Types\Types;
@@ -52,7 +52,7 @@ class AuditService
     public function getEntityAuditLog(string $entityType, int $entityId): array
     {
         $qb = $this->connection->createQueryBuilder();
-        
+
         return $qb->select('*')
             ->from('audit_log')
             ->where('entity_type = :entity_type')
@@ -75,7 +75,7 @@ class AuditService
     public function getTenantAuditLog(array $filters = []): array
     {
         $qb = $this->connection->createQueryBuilder();
-        
+
         $qb->select('*')
             ->from('audit_log')
             ->where('tenant_id = :tenant_id')
@@ -128,4 +128,4 @@ class AuditService
         }
         return $userId;
     }
-} 
+}
