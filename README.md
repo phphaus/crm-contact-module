@@ -10,6 +10,8 @@ A Laravel standalone module package for managing contacts with multi-tenant supp
   - A completely alternative approach would be to have a monolithic repository for the CRM, with all modules being developed alongside each other. This approach has all the typical advantages and disadvantages of monoliths.
   - Given the elasticity of the requirements and its "esoteric" nature, it is not clear which approach would be better suited.
 - For scalability reason we have assumed that the wider CRM would be using Doctrine rather than Eloquent, due to it using the Object Mapper pattern and not Active Record. This approach is seen as overall more flexible as it is more loosely coupled.
+- I have decided for a more DDD heavy approach by utilising the Doctrine ORM, rather than simply the DBAL. While this can have minor performance impacts, this decision was made for simplicity of maintenance. To quote Martin Fowler: "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.”
+- Object inheritance could be improved and native Laravel classes and objects could be utilised more. Limited time did not allow for this.
 
 ## Notes for Reviewers
 - For all the above reasons, note that this README.md contains the commands that could be run on an integrated version of this module with the wider Laravel app. However, this was not tested and is almost certainly not working yet, given the time constraints.
