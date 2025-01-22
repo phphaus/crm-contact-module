@@ -9,7 +9,7 @@
         "doctrine/dbal": "^3.6",
         "doctrine/orm": "^2.14",
         "stancl/tenancy": "^3.7",
-        "darkaonline/l5-swagger": "^8.5",
+        "darkaonline/l5-swagger": "^8.6",
         "react/react": "^1.4"
     },
     "require-dev": {

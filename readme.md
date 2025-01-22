@@ -30,7 +30,7 @@ While SQLite is used for testing, PostgreSQL is required for production due to:
 
 1. Add the package to your Laravel project:
 ```bash
-composer require your-vendor/crm-package
+composer require example/crm-contact-module
 ```
 
 2. Ensure your PostgreSQL database is configured in your .env:
