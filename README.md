@@ -1,4 +1,4 @@
-# CRM Package
+# CRM Contact Module
 
 A Laravel standalone module package for managing contacts with multi-tenant support, phone/email validation, and call tracking.
 
