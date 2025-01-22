@@ -1,7 +1,6 @@
 # CRM Contact Module
 
 A Laravel standalone module package for managing contacts with multi-tenant support, phone/email validation, and call tracking.
-+ [![Test and Publish](https://github.com/example/crm-contact-module/actions/workflows/test-and-publish.yml/badge.svg)](https://github.com/example/crm-contact-module/actions/workflows/test-and-publish.yml)
  
 ## Assumptions
 - The task mentions many fixed requirements and well as the word "production grade code", which as a consequence makes "time" the only variable within the scope-quality-time triad. Given the limited time allocated to this task, and the open-ended nature of "production grade code" the author has decided that the main assessment criteria would be around architecture and code quality, rather than having a functional and working prototype.
