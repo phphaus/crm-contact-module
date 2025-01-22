@@ -1,0 +1,99 @@
+name: Test and Publish
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  release:
+    types: [ created ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_DB: crm_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    strategy:
+      matrix:
+        php-versions: ['8.1', '8.2']
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-versions }}
+        extensions: pdo, pgsql, pdo_pgsql
+        coverage: xdebug
+
+    - name: Validate composer.json
+      run: composer validate --strict
+
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v3
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress
+
+    - name: Run test suite with PostgreSQL
+      env:
+        TEST_DB_CONNECTION: pgsql
+        TEST_DB_HOST: localhost
+        TEST_DB_PORT: 5432
+        TEST_DB_DATABASE: crm_test
+        TEST_DB_USERNAME: postgres
+        TEST_DB_PASSWORD: postgres
+      run: composer test:pgsql
+
+    - name: Run test suite with SQLite
+      run: composer test
+
+  publish:
+    needs: test
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-dev
+
+    - name: Configure Composer authentication
+      run: |
+        mkdir -p ~/.composer
+        echo '{"http-basic":{"packagist.org":{"username":"${{ secrets.PACKAGIST_USERNAME }}","password":"${{ secrets.PACKAGIST_TOKEN }}"}}}' > ~/.composer/auth.json
+
+    # packagist as an example here - could also be a private repository
+    - name: Publish to Packagist
+      run: |
+        curl -XPOST -H "Content-Type:application/json" \
+        -H "Authorization: Bearer ${{ secrets.PACKAGIST_API_TOKEN }}" \
+        -d '{"repository":{"url":"https://packagist.org/packages/example/crm-contact-module"}}' \
+        https://packagist.org/api/update-package 
