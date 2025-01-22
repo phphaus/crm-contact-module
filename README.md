@@ -9,6 +9,7 @@ A Laravel standalone module package for managing contacts with multi-tenant supp
   - While in development, a lean Laravel installation could be added to the codebase (effectively making it a microservice) to have access to artesan and the same tooling the wider CRM would have. Alterntively, the team could work with symlinks or locally published modules instead.
   - A completely alternative approach would be to have a monolithic repository for the CRM, with all modules being developed alongside each other. This approach has all the typical advantages and disadvantages of monoliths.
   - Given the elasticity of the requirements and its "esoteric" nature, it is not clear which approach would be better suited.
+- For scalability reason we have assumed that the wider CRM would be using Doctrine rather than Eloquent, due to it using the Object Mapper pattern and not Active Record. This approach is seen as overall more flexible as it is more loosely coupled.
 
 ## Notes for Reviewers
 - For all the above reasons, note that this README.md contains the commands that could be run on an integrated version of this module with the wider Laravel app. However, this was not tested and is almost certainly not working yet, given the time constraints.
