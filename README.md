@@ -4,8 +4,8 @@ A Laravel standalone module package for managing contacts with multi-tenant supp
 
 ## Assumptions
 - The task mentions many fixed requirements and well as the word "production grade code", which as a consequence makes "time" the only variable within the scope-quality-time triad. Given the limited time allocated to this task, and the open-ended nature of "production grade code" the author has decided that the main assessment criteria would be around architecture and code quality, rather than having a functional and working prototype.
-- There are many different ways to develop and integrate Laravel modules. All come with their own pros and cons and the decision to go with each approach depends heavily on existing processes, tooling and ways of working. For this example, the decision was made to develop this module as a standalone module.
-  - This module can be tested in isolation and published and integrated into the wider CRM solution once the pipeline and test for the module passes.
+- There are many different ways to develop and integrate Laravel modules. All come with their own pros and cons and the decision to go with each approach depends heavily on existing processes, tooling and ways of working. For this example, I made the decision to develop this module as a standalone package.
+  - This module can be tested in isolation and published and integrated into the wider CRM solution once the pipeline and tests for the module pass.
   - While in development, a lean Laravel installation could be added to the codebase (effectively making it a microservice) to have access to artesan and the same tooling the wider CRM would have. Alterntively, the team could work with symlinks or locally published modules instead.
   - A completely alternative approach would be to have a monolithic repository for the CRM, with all modules being developed alongside each other. This approach has all the typical advantages and disadvantages of monoliths.
   - Given the elasticity of the requirements and its "esoteric" nature, it is not clear which approach would be better suited.
@@ -20,13 +20,13 @@ A Laravel standalone module package for managing contacts with multi-tenant supp
 - A secret store is not used, which would be highly recommended in a production-grade code base.
 - Tests are not complete, and would require additional test cases, fuzz testing and even types of tests (indicated by the folders in `src/Tests`).
 - Cross-endpoint ACIDity in database transactions was not implemented in this example. It could be done using [Laravel Workflow and the Saga Pattern](https://laravel-workflow.com/docs/features/sagas/).
-- This example code base was authored with the help of AI, find my instructions and design details in:
+- I embraced AI to collaborate on this codebase, leveraging it as a tool to accelerate development and refine precision. My instructions and design decisions are captured in:
   - [App Docs](./docs/app.md) 
   - [API Docs](./docs/api.md) 
   - [CLI Docs](./docs/cli.md)
   - [Features Docs](./docs/features.md) 
   - [Technology Docs](./docs/technologies.md) 
-- Further, the following contains an overview of current feature sets as well as all decisions made along the way:
+- Additionally, the following documents provide an overview of the current feature set and outline the key decisions and processes that shaped the project:
   - [Decisions](./docs/decisions.md)
   - [Handover](./docs/handover.md)
 
