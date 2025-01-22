@@ -16,6 +16,7 @@ trait ValidatesPhoneNumber
         $countryCode = substr($number, 0, 3);
         $localNumber = substr($number, 3);
 
+        // this might go over the top, but let's go beyond just checking for the country code
         match($countryCode) {
             '+61' => $this->validateAustralianNumber($localNumber),
             '+64' => $this->validateNewZealandNumber($localNumber),
@@ -40,4 +41,4 @@ trait ValidatesPhoneNumber
             throw new \InvalidArgumentException('Invalid New Zealand phone number format');
         }
     }
-} 
+}

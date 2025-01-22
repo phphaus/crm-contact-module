@@ -31,7 +31,6 @@
 - [x] Add tenant middleware
 - [ ] Add rate limiting
 - [ ] Implement caching
-- [ ] Add GraphQL support
 
 ## Service Layer
 - [x] Implement ContactService
@@ -61,7 +60,12 @@
 - [x] Add usage examples
 - [x] Document architecture decisions
 
-## Pending Features
+## Pending Features & Enhancements
+- [ ] Implement advanced search
+- [ ] Implement workflow automation
+- [ ] Add integration hooks
+- [ ] Implement API versioning
+- [ ] Implement user permissions
 - [ ] Add contact import/export
 - [ ] Implement batch operations
 - [ ] Add contact grouping
@@ -73,17 +77,3 @@
 - [ ] Add contact activity timeline
 - [ ] Implement real-time notifications
 - [ ] Add webhook support
-
-## Future Enhancements
-- [ ] Add support for more phone number regions
-- [ ] Implement advanced search
-- [ ] Add custom field support
-- [ ] Implement workflow automation
-- [ ] Add integration hooks
-- [ ] Implement API versioning
-- [ ] Implement real-time updates
-- [ ] Add bulk operations
-- [ ] Implement data export
-- [ ] Add dashboard widgets
-- [ ] Implement user permissions
-- [ ] Add audit report generation

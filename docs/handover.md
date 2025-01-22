@@ -189,7 +189,10 @@ src/
 - Architecture decisions: `docs/decisions.md`
 - Feature tracking: `docs/roadmap.md`
 - API documentation: `docs/api.md`
-- Configuration: `docs/config.md`
+- CLI documentation: `docs/cli.md`
+- APP documentation: `docs/app.md`
+- Feature documentation: `docs/features.md`
+- Technologies documentation: `docs/technologies.md`
 
 ## Critical Paths
 1. **Tenant Isolation**

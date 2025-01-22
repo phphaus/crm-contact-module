@@ -1,14 +1,39 @@
 # CRM Package
 
-A Laravel package for managing contacts with multi-tenant support, phone/email validation, and call tracking.
+A Laravel standalone module package for managing contacts with multi-tenant support, phone/email validation, and call tracking.
 
-## Features
+## Assumptions
+- The task mentions many fixed requirements and well as the word "production grade code", which as a consequence makes "time" the only variable within the scope-quality-time triad. Given the limited time allocated to this task, and the open-ended nature of "production grade code" the author has decided that the main assessment criteria would be around architecture and code quality, rather than having a functional and working prototype.
+- There are many different ways to develop and integrate Laravel modules. All come with their own pros and cons and the decision to go with each approach depends heavily on existing processes, tooling and ways of working. For this example, the decision was made to develop this module as a standalone module.
+  - This module can be tested in isolation and published and integrated into the wider CRM solution once the pipeline and test for the module passes.
+  - While in development, a lean Laravel installation could be added to the codebase (effectively making it a microservice) to have access to artesan and the same tooling the wider CRM would have. Alterntively, the team could work with symlinks or locally published modules instead.
+  - A completely alternative approach would be to have a monolithic repository for the CRM, with all modules being developed alongside each other. This approach has all the typical advantages and disadvantages of monoliths.
+  - Given the elasticity of the requirements and its "esoteric" nature, it is not clear which approach would be better suited.
+
+## Notes for Reviewers
+- For all the above reasons, note that this README.md contains the commands that could be run on an integrated version of this module with the wider Laravel app. However, this was not tested and is almost certainly not working yet, given the time constraints.
+- Some functionality, such as Migrations, Auth + JWT, CI/CD, Async Requests and OpenAPI/Swagger have been mocked or scaffolded as examples.
+- Many different areas are not final and would need improvements to be production grade.
+- A secret store is not used, which would be highly recommended in a production-grade code base.
+- Tests are not complete, and would require additional test cases, fuzz testing and even types of tests (indicated by the folders in `src/Tests`).
+- Cross-endpoint ACIDity in database transactions was not implemented in this example. It could be done using [Laravel Workflow and the Saga Pattern](https://laravel-workflow.com/docs/features/sagas/).
+- This example code base was authored with the help of AI, find my instructions and design details in:
+  - [App Docs](./docs/app.md) 
+  - [API Docs](./docs/api.md) 
+  - [CLI Docs](./docs/cli.md)
+  - [Features Docs](./docs/features.md) 
+  - [Technology Docs](./docs/technologies.md) 
+- Further, the following contains an overview of current feature sets as well as all decisions made along the way:
+  - [Decisions](./docs/decisions.md)
+  - [Handover](./docs/handover.md)
+
+## Summary of Features
 - Multi-tenant contact management
 - Phone number validation (AU/NZ)
 - Email validation and management
 - Call tracking and history
 - RESTful API with JWT authentication
-- Comprehensive test coverage
+- Test Examples
 - OpenAPI/Swagger documentation
 
 ## Requirements
@@ -165,15 +190,3 @@ To automatically fix code style:
 ```bash
 ./vendor/bin/phpcbf --standard=PSR12 src/
 ```
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Write tests for your changes
-4. Ensure all tests pass
-5. Submit a pull request
-
-## License
-
-This package is open-sourced software licensed under the [MIT license](LICENSE.md).
