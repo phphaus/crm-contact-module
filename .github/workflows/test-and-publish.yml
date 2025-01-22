@@ -11,7 +11,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+
     services:
       postgres:
         image: postgres:14
@@ -29,7 +29,7 @@ jobs:
 
     strategy:
       matrix:
-        php-versions: ['8.1', '8.2']
+        php-versions: ['8.2']
 
     steps:
     - uses: actions/checkout@v3
@@ -38,7 +38,7 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: ${{ matrix.php-versions }}
-        extensions: pdo, pgsql, pdo_pgsql
+        extensions: pdo, pgsql, pdo_pgsql, dom
         coverage: xdebug
 
     - name: Validate composer.json
@@ -73,7 +73,7 @@ jobs:
     needs: test
     if: github.event_name == 'release'
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v3
 
@@ -96,4 +96,4 @@ jobs:
         curl -XPOST -H "Content-Type:application/json" \
         -H "Authorization: Bearer ${{ secrets.PACKAGIST_API_TOKEN }}" \
         -d '{"repository":{"url":"https://packagist.org/packages/example/crm-contact-module"}}' \
-        https://packagist.org/api/update-package 
+        https://packagist.org/api/update-package
